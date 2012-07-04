@@ -1,0 +1,82 @@
+<?php
+/**
+ * Copyright 2012 Eric D. Hough (http://ehough.com)
+ *
+ * This file is part of jameson (https://github.com/ehough/jameson)
+ *
+ * jameson is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * jameson is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with jameson.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+/**
+ * Original author...
+ *
+ * Zend Framework
+ *
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Json
+ * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ */
+
+/**
+ * Decode JSON encoded string to PHP variable constructs
+ *
+ * @category   Zend
+ * @package    Zend_Json
+ * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ */
+interface ehough_jameson_api_IDecoder extends ehough_jameson_api_IAbstractTuneable
+{
+    /**
+     * By default, decoded objects will be returned as associative arrays. Set this
+     * option to true to return a stdClass object instead.
+     */
+    const OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS = 'decodeToStdClassInsteadOfArrays';
+
+    /**
+     * Try to use PHP's native decoder when possible.
+     */
+    const OPTION_USE_NATIVE_DECODER = 'useNativeDecoder';
+
+    /**
+     * Decode a JSON source string
+     *
+     * Decodes a JSON encoded string. The value returned will be one of the
+     * following:
+     *        - integer
+     *        - float
+     *        - boolean
+     *        - null
+     *      - StdClass
+     *      - array
+     *         - array of one or more of the above types
+     *
+     * @param string $source String to be decoded
+     *
+     * @return mixed
+     */
+    public function decode($source);
+}
