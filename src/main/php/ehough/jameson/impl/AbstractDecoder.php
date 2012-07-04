@@ -48,12 +48,23 @@
  */
 abstract class ehough_jameson_impl_AbstractDecoder extends ehough_jameson_impl_AbstractTuneable implements ehough_jameson_api_IDecoder
 {
+    /**
+     * By default, decoded objects will be returned as associative arrays. Set this
+     * option to true to return a stdClass object instead.
+     */
+    const OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS = 'decodeToStdClassInsteadOfArrays';
+
+    /**
+     * Try to use PHP's native decoder when possible.
+     */
+    const OPTION_USE_NATIVE_DECODER = 'useNativeDecoder';
+
     protected final function _getDefaultOptionMap()
     {
         return array(
 
-            ehough_jameson_api_IDecoder::OPTION_USE_NATIVE_DECODER                   => true,
-            ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => true,
+            ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER                   => true,
+            ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => true,
         );
     }
 }

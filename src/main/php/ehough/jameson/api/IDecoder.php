@@ -51,17 +51,6 @@
 interface ehough_jameson_api_IDecoder extends ehough_jameson_api_IAbstractTuneable
 {
     /**
-     * By default, decoded objects will be returned as associative arrays. Set this
-     * option to true to return a stdClass object instead.
-     */
-    const OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS = 'decodeToStdClassInsteadOfArrays';
-
-    /**
-     * Try to use PHP's native decoder when possible.
-     */
-    const OPTION_USE_NATIVE_DECODER = 'useNativeDecoder';
-
-    /**
      * Decode a JSON source string
      *
      * Decodes a JSON encoded string. The value returned will be one of the

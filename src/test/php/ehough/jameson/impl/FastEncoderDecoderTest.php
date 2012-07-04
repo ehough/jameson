@@ -59,8 +59,8 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
         $this->_decoder = new ehough_jameson_impl_FastDecoder();
         $this->_encoder = new ehough_jameson_impl_FastEncoder();
 
-        $this->_encoder->setOptions(array(ehough_jameson_api_IEncoder::OPTION_USE_NATIVE_ENCODER => false));
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_USE_NATIVE_DECODER => false));
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER => false));
     }
 
     public function testJSONWithPhpJSONExtension()
@@ -70,16 +70,16 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
             $this->markTestSkipped('JSON extension is not loaded');
         }
 
-        $this->_encoder->setOptions(array(ehough_jameson_api_IEncoder::OPTION_USE_NATIVE_ENCODER => true));
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_USE_NATIVE_DECODER => true));
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => true));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER => true));
 
         $this->_testJSON(array('string', 327, true, null));
     }
 
     public function testJSONWithBuiltins()
     {
-        $this->_encoder->setOptions(array(ehough_jameson_api_IEncoder::OPTION_USE_NATIVE_ENCODER => false));
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_USE_NATIVE_DECODER => false));
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER => false));
 
         $this->_testJSON(array('string', 327, true, null));
     }
@@ -237,12 +237,12 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
 
         $array = array('__className' => 'stdClass', 'one' => 1, 'two' => 2);
 
-        $this->_encoder->setOptions(array(ehough_jameson_api_IEncoder::OPTION_USE_NATIVE_ENCODER => false));
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => false));
 
         $encoded = $this->_encoder->encode($value);
 
 
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
 
         $this->assertSame($array, $this->_decoder->decode($encoded));
     }
@@ -256,7 +256,7 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
         $value->one = 1;
         $value->two = 2;
 
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => true));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => true));
 
         $encoded = $this->_encoder->encode($value);
         $decoded = $this->_decoder->decode($encoded);
@@ -274,7 +274,7 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
         $value = '[{"id":1},{"foo":2}]';
         $expect = array(array('id' => 1), array('foo' => 2));
 
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
 
         $this->assertEquals($expect, $this->_decoder->decode($value));
     }
@@ -295,7 +295,7 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
             21  => array(12, 'paul')
         );
 
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
 
         $this->assertEquals($expect, $this->_decoder->decode($value));
     }
@@ -306,7 +306,7 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
      */
     protected function _testEncodeDecode($values)
     {
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
 
         foreach ($values as $value) {
             $encoded = $this->_encoder->encode($value);
@@ -351,7 +351,7 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
     {
         $expected = array('data' => array(1, 2, 3, 4));
 
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
 
         $json = '{"data":[1,2,3,4' . "\n]}";
         $this->assertEquals($expected, $this->_decoder->decode($json));
@@ -409,12 +409,12 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
         $everything['currentItem'] = $item1 ;
 
         // should not fail
-        $this->_encoder->setOptions(array(ehough_jameson_api_IEncoder::OPTION_CYCLE_CHECK_ENABLED => false));
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_CYCLE_CHECK_ENABLED => false));
         $encoded = $this->_encoder->encode($everything);
 
         // should fail
         $this->setExpectedException('ehough_jameson_api_exception_RecursionException');
-        $this->_encoder->setOptions(array(ehough_jameson_api_IEncoder::OPTION_CYCLE_CHECK_ENABLED => true));
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_CYCLE_CHECK_ENABLED => true));
         $this->_encoder->encode($everything);
     }
 
@@ -432,7 +432,7 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
         $everything['allItems'] = array($item1, $item2) ;
         $everything['currentItem'] = $item1 ;
 
-        $this->_encoder->setOptions(array(ehough_jameson_api_IEncoder::OPTION_SILENCE_CYCLICAL_ERRORS => true));
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_SILENCE_CYCLICAL_ERRORS => true));
 
         $encoded = $this->_encoder->encode($everything);
         $json = '{"allItems":[{"__className":"ZendTest_JSON_Item"},{"__className":"ZendTest_JSON_Item"}],"currentItem":"* RECURSION (ZendTest_JSON_Item) *"}';
@@ -445,7 +445,7 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
         $actual  = new ZendTest_JSON_Object();
         $encoded = $this->_encoder->encode($actual);
 
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => true));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => true));
 
         $decoded = $this->_decoder->decode($encoded);
 
@@ -579,8 +579,8 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
         $target = '"<\\/foo><foo>bar<\\/foo>"';
 
         // first test ext/json
-        $this->_encoder->setOptions(array(ehough_jameson_api_IEncoder::OPTION_USE_NATIVE_ENCODER => true));
-        $this->_decoder->setOptions(array(ehough_jameson_api_IDecoder::OPTION_USE_NATIVE_DECODER => true));
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => true));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER => true));
         $this->assertEquals($target, $this->_encoder->encode($source));
     }
 

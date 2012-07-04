@@ -71,9 +71,9 @@ final class ehough_jameson_impl_FastDecoder extends ehough_jameson_impl_Abstract
     {
         $encodedValue = (string) $encodedValue;
 
-        if (function_exists('json_decode') && $this->getOption(ehough_jameson_api_IDecoder::OPTION_USE_NATIVE_DECODER) === true) {
+        if (function_exists('json_decode') && $this->getOption(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER) === true) {
 
-            $decode = json_decode($encodedValue, $this->getOption(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS) !== true);
+            $decode = json_decode($encodedValue, $this->getOption(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS) !== true);
 
             switch (json_last_error()) {
 

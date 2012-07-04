@@ -51,13 +51,24 @@
  */
 abstract class ehough_jameson_impl_AbstractEncoder extends ehough_jameson_impl_AbstractTuneable implements ehough_jameson_api_IEncoder
 {
+    /** Whether or not to check for possible object recursion when encoding. */
+    const OPTION_CYCLE_CHECK_ENABLED = 'cycleCheckEnabled';
+
+    /** Whether or not to silence recursion errors. */
+    const OPTION_SILENCE_CYCLICAL_ERRORS = 'silenceCyclicalErrors';
+
+    /**
+     * Try to use PHP's native encoder when possible.
+     */
+    const OPTION_USE_NATIVE_ENCODER = 'useNativeEncoder';
+
     protected final function _getDefaultOptionMap()
     {
         return array(
 
-            ehough_jameson_api_IEncoder::OPTION_CYCLE_CHECK_ENABLED     => true,
-            ehough_jameson_api_IEncoder::OPTION_SILENCE_CYCLICAL_ERRORS => false,
-            ehough_jameson_api_IEncoder::OPTION_USE_NATIVE_ENCODER      => true,
+            ehough_jameson_impl_AbstractEncoder::OPTION_CYCLE_CHECK_ENABLED     => true,
+            ehough_jameson_impl_AbstractEncoder::OPTION_SILENCE_CYCLICAL_ERRORS => false,
+            ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER      => true,
         );
     }
 }

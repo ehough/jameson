@@ -75,7 +75,7 @@ final class ehough_jameson_impl_FastEncoder extends ehough_jameson_impl_Abstract
         }
 
         // Encoding
-        if (function_exists('json_encode') && $this->getOption(ehough_jameson_api_IEncoder::OPTION_USE_NATIVE_ENCODER) === true) {
+        if (function_exists('json_encode') && $this->getOption(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER) === true) {
 
             return json_encode($valueToEncode);
 

@@ -196,11 +196,11 @@ final class ehough_jameson_impl_ZendEncoder extends ehough_jameson_impl_Abstract
      */
     private function _encodeObject($value)
     {
-        if ($this->getOption(ehough_jameson_api_IEncoder::OPTION_CYCLE_CHECK_ENABLED) === true) {
+        if ($this->getOption(ehough_jameson_impl_AbstractEncoder::OPTION_CYCLE_CHECK_ENABLED) === true) {
 
             if ($this->_wasVisited($value)) {
 
-                if ($this->getOption(ehough_jameson_api_IEncoder::OPTION_SILENCE_CYCLICAL_ERRORS) === true) {
+                if ($this->getOption(ehough_jameson_impl_AbstractEncoder::OPTION_SILENCE_CYCLICAL_ERRORS) === true) {
 
                     return '"* RECURSION (' . str_replace('\\', '\\\\', get_class($value)) . ') *"';
 

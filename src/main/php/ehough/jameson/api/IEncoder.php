@@ -50,17 +50,6 @@
  */
 interface ehough_jameson_api_IEncoder extends ehough_jameson_api_IAbstractTuneable
 {
-    /** Whether or not to check for possible object recursion when encoding. */
-    const OPTION_CYCLE_CHECK_ENABLED = 'cycleCheckEnabled';
-
-    /** Whether or not to silence recursion errors. */
-    const OPTION_SILENCE_CYCLICAL_ERRORS = 'silenceCyclicalErrors';
-
-    /**
-     * Try to use PHP's native encoder when possible.
-     */
-    const OPTION_USE_NATIVE_ENCODER = 'useNativeEncoder';
-
     /**
      * Use the JSON encoding scheme for the value specified
      *

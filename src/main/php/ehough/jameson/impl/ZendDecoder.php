@@ -265,7 +265,7 @@ final class ehough_jameson_impl_ZendDecoder extends ehough_jameson_impl_Abstract
             $tok = $this->_getNextToken();
         }
 
-        if ($this->getOption(ehough_jameson_api_IDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS) === true) {
+        if ($this->getOption(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS) === true) {
 
             // Create new StdClass and populate with $members
             $result = new stdClass();
