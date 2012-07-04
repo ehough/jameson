@@ -90,6 +90,16 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
      */
     protected function _testJSON($values)
     {
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER => false));
+
+        $encoded = $this->_encoder->encode($values);
+
+        $this->assertEquals($values, $this->_decoder->decode($encoded));
+
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => true));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER => true));
+
         $encoded = $this->_encoder->encode($values);
 
         $this->assertEquals($values, $this->_decoder->decode($encoded));
@@ -306,14 +316,31 @@ final class ehough_jameson_impl_FastEncoderDecoderTest extends PHPUnit_Framework
      */
     protected function _testEncodeDecode($values)
     {
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => false));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER => false));
+
+        $this->_doTestEncodeDecode($values);
+
+        $this->_encoder->setOptions(array(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER => true));
+        $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER => true));
+
+        $this->_doTestEncodeDecode($values);
+    }
+
+    private function _doTestEncodeDecode($values)
+    {
         $this->_decoder->setOptions(array(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => false));
 
         foreach ($values as $value) {
+
             $encoded = $this->_encoder->encode($value);
 
             if (is_array($value) || is_object($value)) {
+
                 $this->assertEquals($this->_toArray($value), $this->_decoder->decode($encoded));
+
             } else {
+
                 $this->assertEquals($value, $this->_decoder->decode($encoded));
             }
         }
