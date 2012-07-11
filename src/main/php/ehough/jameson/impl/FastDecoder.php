@@ -46,10 +46,11 @@
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc.
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-final class ehough_jameson_impl_FastDecoder extends ehough_jameson_impl_AbstractDecoder implements ehough_jameson_api_IDecoder
+final class ehough_jameson_impl_FastDecoder
+    extends ehough_jameson_impl_AbstractDecoder implements ehough_jameson_api_IDecoder
 {
     /**
-     * Decode a JSON source string
+     * Decode a JSON source string.
      *
      * Decodes a JSON encoded string. The value returned will be one of the
      * following:
@@ -61,19 +62,24 @@ final class ehough_jameson_impl_FastDecoder extends ehough_jameson_impl_Abstract
      *      - array
      *         - array of one or more of the above types
      *
-     * @param string $encodedValue String to be decoded
+     * @param string $encodedValue String to be decoded.
      *
-     * @return mixed
+     * @return mixed The decoded JSON.
      *
-     * @throws ehough_jameson_api_exception_RuntimeException
+     * @throws ehough_jameson_api_exception_RuntimeException If there was a decode error.
      */
     public function decode($encodedValue)
     {
         $encodedValue = (string) $encodedValue;
 
-        if (function_exists('json_decode') && $this->getOption(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER) === true) {
+        if (function_exists('json_decode')
+            && $this->getOption(ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER) === true
+        ) {
 
-            $decode = json_decode($encodedValue, $this->getOption(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS) !== true);
+            $decodeToStdClss
+                = $this->getOption(ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS);
+
+            $decode = json_decode($encodedValue, $decodeToStdClss !== true);
 
             switch (json_last_error()) {
 
@@ -83,11 +89,15 @@ final class ehough_jameson_impl_FastDecoder extends ehough_jameson_impl_Abstract
 
                 case JSON_ERROR_DEPTH:
 
-                    throw new ehough_jameson_api_exception_RuntimeException('Decoding failed: Maximum stack depth exceeded');
+                    throw new ehough_jameson_api_exception_RuntimeException(
+                        'Decoding failed: Maximum stack depth exceeded'
+                    );
 
                 case JSON_ERROR_CTRL_CHAR:
 
-                    throw new ehough_jameson_api_exception_RuntimeException('Decoding failed: Unexpected control character found');
+                    throw new ehough_jameson_api_exception_RuntimeException(
+                        'Decoding failed: Unexpected control character found'
+                    );
 
                 case JSON_ERROR_SYNTAX:
 

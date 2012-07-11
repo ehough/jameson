@@ -46,7 +46,8 @@
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc.
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class ehough_jameson_impl_AbstractDecoder extends ehough_jameson_impl_AbstractTuneable implements ehough_jameson_api_IDecoder
+abstract class ehough_jameson_impl_AbstractDecoder
+    extends ehough_jameson_impl_AbstractTuneable implements ehough_jameson_api_IDecoder
 {
     /**
      * By default, decoded objects will be returned as associative arrays. Set this
@@ -59,12 +60,17 @@ abstract class ehough_jameson_impl_AbstractDecoder extends ehough_jameson_impl_A
      */
     const OPTION_USE_NATIVE_DECODER = 'useNativeDecoder';
 
+    /**
+     * Get the map of default options.
+     *
+     * @return mixed Map of default options.
+     */
     protected final function _getDefaultOptionMap()
     {
         return array(
 
-            ehough_jameson_impl_AbstractDecoder::OPTION_USE_NATIVE_DECODER                   => true,
-            ehough_jameson_impl_AbstractDecoder::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => true,
-        );
+                self::OPTION_USE_NATIVE_DECODER                   => true,
+                self::OPTION_DECODE_TO_STDCLASS_INSTEAD_OF_ARRAYS => true,
+               );
     }
 }

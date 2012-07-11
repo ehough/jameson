@@ -28,6 +28,9 @@ abstract class ehough_jameson_impl_AbstractTuneable implements ehough_jameson_ap
     /** Option map. */
     private $_options = array();
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->_options = $this->_getDefaultOptionMap();
@@ -78,5 +81,10 @@ abstract class ehough_jameson_impl_AbstractTuneable implements ehough_jameson_ap
         return $this->_options;
     }
 
+    /**
+     * Get the map of default options.
+     *
+     * @return mixed Map of default options.
+     */
     protected abstract function _getDefaultOptionMap();
 }

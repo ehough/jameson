@@ -46,21 +46,22 @@
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc.
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-final class ehough_jameson_impl_ZendDecoder extends ehough_jameson_impl_AbstractDecoder implements ehough_jameson_api_IDecoder
+final class ehough_jameson_impl_ZendDecoder
+    extends ehough_jameson_impl_AbstractDecoder implements ehough_jameson_api_IDecoder
 {
     /**
      * Parse tokens used to decode the JSON object. These are not
      * for public consumption, they are just used internally to the
      * class.
      */
-    const EOF       = 0;
-    const DATUM     = 1;
-    const LBRACE    = 2;
-    const LBRACKET  = 3;
-    const RBRACE    = 4;
-    const RBRACKET  = 5;
-    const COMMA     = 6;
-    const COLON     = 7;
+    const EOF      = 0;
+    const DATUM    = 1;
+    const LBRACE   = 2;
+    const LBRACKET = 3;
+    const RBRACE   = 4;
+    const RBRACKET = 5;
+    const COMMA    = 6;
+    const COLON    = 7;
 
     /**
      * Use to maintain a "pointer" to the source being decoded
@@ -93,6 +94,11 @@ final class ehough_jameson_impl_ZendDecoder extends ehough_jameson_impl_Abstract
 
     private $_tokenValue = null;
 
+    /**
+     * Constructor.
+     *
+     * @param string $source The source data.
+     */
     public function __construct($source = '')
     {
         parent::__construct();
@@ -108,7 +114,7 @@ final class ehough_jameson_impl_ZendDecoder extends ehough_jameson_impl_Abstract
     }
 
     /**
-     * Decode a JSON source string
+     * Decode a JSON source string.
      *
      * Decodes a JSON encoded string. The value returned will be one of the
      * following:
@@ -120,9 +126,9 @@ final class ehough_jameson_impl_ZendDecoder extends ehough_jameson_impl_Abstract
      *      - array
      *         - array of one or more of the above types
      *
-     * @param string $source String to be decoded
+     * @param string $source String to be decoded.
      *
-     * @return mixed
+     * @return mixed The decoded source.
      */
     public function decode($source)
     {
@@ -134,9 +140,9 @@ final class ehough_jameson_impl_ZendDecoder extends ehough_jameson_impl_Abstract
     }
 
     /**
-     * Recursive driving rountine for supported toplevel tops
+     * Recursive driving rountine for supported toplevel tops.
      *
-     * @return mixed
+     * @return mixed The decoded data.
      */
     private function _decode()
     {
@@ -144,23 +150,23 @@ final class ehough_jameson_impl_ZendDecoder extends ehough_jameson_impl_Abstract
 
             case self::DATUM:
 
-                $result  = $this->_tokenValue;
+                $result = $this->_tokenValue;
 
                 $this->_getNextToken();
 
-                return($result);
+                return $result;
 
                 break;
 
             case self::LBRACE:
 
-                return($this->_decodeObject());
+                return $this->_decodeObject();
 
                 break;
 
             case self::LBRACKET:
 
-                return($this->_decodeArray());
+                return $this->_decodeArray();
 
                 break;
 
@@ -182,7 +188,8 @@ final class ehough_jameson_impl_ZendDecoder extends ehough_jameson_impl_Abstract
      */
     private function _decodeArray()
     {
-        $result   = array();
+        $result = array();
+
         /** @noinspection PhpUnusedLocalVariableInspection */
         $starttok = $tok = $this->_getNextToken(); // Move past the '['
         $index    = 0;

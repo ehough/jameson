@@ -46,15 +46,15 @@
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc.
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-final class ehough_jameson_impl_FastEncoder extends ehough_jameson_impl_AbstractEncoder implements ehough_jameson_api_IEncoder
+final class ehough_jameson_impl_FastEncoder
+    extends ehough_jameson_impl_AbstractEncoder implements ehough_jameson_api_IEncoder
 {
-
     /**
-     * Use the JSON encoding scheme for the value specified
+     * Use the JSON encoding scheme for the value specified.
      *
-     * @param mixed $valueToEncode The value to be encoded
+     * @param mixed $valueToEncode The value to be encoded.
      *
-     * @return string The encoded value
+     * @return string The encoded value.
      */
     public function encode($valueToEncode)
     {
@@ -75,7 +75,9 @@ final class ehough_jameson_impl_FastEncoder extends ehough_jameson_impl_Abstract
         }
 
         // Encoding
-        if (function_exists('json_encode') && $this->getOption(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER) === true) {
+        if (function_exists('json_encode')
+            && $this->getOption(ehough_jameson_impl_AbstractEncoder::OPTION_USE_NATIVE_ENCODER) === true
+        ) {
 
             return json_encode($valueToEncode);
 

@@ -51,7 +51,7 @@
 interface ehough_jameson_api_IDecoder extends ehough_jameson_api_IAbstractTuneable
 {
     /**
-     * Decode a JSON source string
+     * Decode a JSON source string.
      *
      * Decodes a JSON encoded string. The value returned will be one of the
      * following:
@@ -63,9 +63,11 @@ interface ehough_jameson_api_IDecoder extends ehough_jameson_api_IAbstractTuneab
      *      - array
      *         - array of one or more of the above types
      *
-     * @param string $source String to be decoded
+     * @param string $source String to be decoded.
      *
-     * @return mixed
+     * @return mixed The decoded JSON.
+     *
+     * @throws ehough_jameson_api_exception_RuntimeException If there was a decode error.
      */
-    public function decode($source);
+    function decode($source);
 }

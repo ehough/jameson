@@ -51,11 +51,11 @@
 interface ehough_jameson_api_IEncoder extends ehough_jameson_api_IAbstractTuneable
 {
     /**
-     * Use the JSON encoding scheme for the value specified
+     * Use the JSON encoding scheme for the value specified.
      *
-     * @param mixed $value The value to be encoded
+     * @param mixed $value The value to be encoded.
      *
-     * @return string The encoded value
+     * @return string The encoded value.
      */
-    public function encode($value);
+    function encode($value);
 }
