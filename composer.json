@@ -22,7 +22,7 @@
 
     "require-dev": {
         
-	    "ehough/pulsar": "1.*"
+	    "ehough/pulsar": "^2.5"
     },
 
     "autoload": {
