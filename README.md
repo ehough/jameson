@@ -5,7 +5,7 @@
 [![Latest Stable Version](https://poser.pugx.org/ehough/jameson/v/stable)](https://packagist.org/packages/ehough/jameson)
 [![License](https://poser.pugx.org/ehough/jameson/license)](https://packagist.org/packages/ehough/jameson)
 
-JSON encoder/decoder compatible with PHP 5.1.3 and above. This library will use PHP's builtin
+**This library is no longer maintained.** JSON encoder/decoder compatible with PHP 5.1.3 and above. This library will use PHP's builtin
 [`json_encode()`](http://php.net/json_encode) and [`json_decode()`](http://php.net/json_decode) when available.
 
     $input   = array('a' => 1, 'b' => 2, 'c' => 3);
