@@ -5,13 +5,13 @@
 
     "homepage": "https://github.com/ehough/jameson",
 
-    "license": "GPL-3.0+",
+    "license": "MPL-2.0",
 
     "authors": [
         {
             "name": "Eric Hough",
-            "email": "eric@ehough.com",
-            "homepage": "http://ehough.com"
+            "email": "eric@tubepress.com",
+            "homepage": "https://github.com/ehough"
         }
     ],
 
