@@ -1,12 +1,8 @@
 {
     "name": "ehough/jameson",
-
     "description": "JSON encoder/decoder compatible with PHP 5.1 and above.",
-
     "homepage": "https://github.com/ehough/jameson",
-
     "license": "MPL-2.0",
-
     "authors": [
         {
             "name": "Eric Hough",
@@ -14,21 +10,14 @@
             "homepage": "https://github.com/ehough"
         }
     ],
-
     "require": {
-
         "php": ">=5.1.0"
     },
-
     "require-dev": {
-        
 	    "ehough/pulsar": "^2.5"
     },
-
     "autoload": {
-
         "psr-0": {
-
             "ehough_jameson": "src/main/php"
         }
     }
